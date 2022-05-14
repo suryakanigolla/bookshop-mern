@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 const { toJSON } = require("./plugins");
+const {states, cities} = require("../utils/indianStatesAndCities")
 
 const addressSchema = mongoose.Schema(
   {
@@ -15,12 +17,12 @@ const addressSchema = mongoose.Schema(
     },
     state: {
       type: String,
-      enum: ["Tamil Nadu"],
+      enum: states,
       required: true,
     },
     city: {
       type: String,
-      enum: ["Coimbatore"],
+      enum: cities,
       required: true,
     },
     pincode: {

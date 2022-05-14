@@ -26,9 +26,20 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
+const addAddress = async (userId, addressId) => {
+  const user = await getUserById(userId);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+  }
+  user.address.push(addressId);
+  await user.save();
+  return user;
+};
+
 module.exports = {
   createUser,
   getUserById,
   deleteUserById,
   getUserByEmail,
+  addAddress,
 };
