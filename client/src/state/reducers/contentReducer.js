@@ -1,5 +1,6 @@
 const initialState = {
   books: null,
+  currentBook: null,
   isLoading: null,
 };
 
@@ -10,7 +11,7 @@ const contentReducer = (state = initialState, action) => {
         ...state,
         books: action.payload,
       };
-    case "TOGGLE_LOADING":
+    case "TOGGLE_CONTENT_LOADING":
       return {
         ...state,
         isLoading: action.payload,

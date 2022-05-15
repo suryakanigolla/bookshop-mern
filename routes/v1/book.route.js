@@ -6,9 +6,9 @@ const bookValidation = require("../../validation/book.validation");
 
 const router = express.Router();
 
-router.route("/").get(auth(), bookController.getBooks);
+router.route("/").get(bookController.getBooks);
 router
   .route("/:bookId")
-  .get(auth(), validate(bookValidation.getBook), bookController.getBook);
+  .get(validate(bookValidation.getBook), bookController.getBook);
 
 module.exports = router;

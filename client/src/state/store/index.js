@@ -1,5 +1,6 @@
-import { compose, applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
+import { composeWithDevTools } from "redux-devtools-extension";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 import reducers from "../reducers";
@@ -10,6 +11,9 @@ const persistConfig = {
   whitelist: ["userReducer", "contentReducer"],
 };
 const persisReducer = persistReducer(persistConfig, reducers);
-const store = createStore(persisReducer, compose(applyMiddleware(thunk)));
+const store = createStore(
+  persisReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 const persistor = persistStore(store);
 export { persistor, store };

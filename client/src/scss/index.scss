@@ -28,6 +28,10 @@
   --clr-navbar-text: #4c4c4c;
   --clr-white: white;
   --clr-black: black;
+  --clr-hover-button: rgba(255, 255, 255, 0.1);
+  --clr-blue-button: #2f80ed;
+  --clr-hover-blue-button: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+  --clr-text-muted: rgb(108, 117, 125);
 
   /* font-sizes */
   --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
@@ -39,6 +43,9 @@
   --fs-300: 1rem;
   --fs-200: 0.875rem;
   --fs-100: 0.75rem;
+
+  /* box-shadow */
+  --shadow-navbar: 0px 4px 4px 0px #00000040;
 
   /* font-families */
   --ff-noto-sans: "Noto Sans";
@@ -66,5 +73,6 @@
 }
 
 @import "./reset";
+@import "./colors";
 @import "./typography";
 @import "./utilities";

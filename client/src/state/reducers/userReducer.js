@@ -24,6 +24,12 @@ const userReducer = (state = initialState, action) => {
         refreshToken: null,
         isLoggedIn: null,
       };
+    case "REFRESH_TOKENS":
+      return {
+        ...state,
+        accessToken: action.payload.tokens.access.token,
+        refreshToken: action.payload.tokens.refresh.token,
+      };
     case "TOGGLE_LOADING":
       return {
         ...state,
