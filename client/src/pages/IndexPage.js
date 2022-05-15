@@ -24,7 +24,7 @@ const IndexPage = () => {
   const indexOfLastBook = page * perPage;
   const indexOfFirstBook = indexOfLastBook - perPage;
 
-  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook) || [];
 
   useEffect(() => {
     dispatch(getBooks());
