@@ -24,7 +24,7 @@ const IndexPage = () => {
   const indexOfLastBook = page * perPage;
   const indexOfFirstBook = indexOfLastBook - perPage;
 
-  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook) || [];
 
   useEffect(() => {
     dispatch(getBooks());
@@ -72,7 +72,8 @@ const IndexPage = () => {
                       <Skeleton />
                     </div>
                   ))
-              : currentBooks.map((book, index) => (
+              : currentBooks
+              ? currentBooks.map((book, index) => (
                   <Book
                     key={index}
                     title={book.title}
@@ -81,7 +82,8 @@ const IndexPage = () => {
                     price={book.price}
                     id={book.id}
                   />
-                ))}
+                ))
+              : null}
           </div>
           {isLoading ? null : (
             <div>
