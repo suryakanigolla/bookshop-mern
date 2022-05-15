@@ -1,7 +1,10 @@
 import axios from "axios";
 import { store } from "state/store/";
 
-const apiUrl = "http://localhost:5000/v1";
+const apiUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5000/v1"
+    : "https://bookshop-mern2.herokuapp.com/";
 
 const axiosInstance = axios.create({
   baseURL: apiUrl,
