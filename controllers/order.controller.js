@@ -10,7 +10,7 @@ const createOrder = catchAsync(async (req, res) => {
 });
 
 const getOrders = catchAsync(async (req, res) => {
-  const orders = await Order.find({});
+  const orders = await Order.find({}).populate('bookList');
   res.send(orders);
 });
 

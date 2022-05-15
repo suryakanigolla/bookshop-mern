@@ -59,6 +59,18 @@
     }
   }
   &__browse {
+    background-color: #d12468;
+    opacity: 0.8;
+    background-image: radial-gradient(circle at center center, #febe27, #d12468),
+      repeating-radial-gradient(
+        circle at center center,
+        #febe27,
+        #febe27,
+        10px,
+        transparent 20px,
+        transparent 10px
+      );
+    background-blend-mode: multiply;
     &__content {
       height: 100%;
       padding-top: 40px;
@@ -88,6 +100,35 @@
           }
         }
       }
+    }
+  }
+}
+
+.pagination {
+  padding-inline-start: 0px;
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  & li {
+    padding: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: black;
+      & a {
+        color: white;
+      }
+    }
+    & a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+  &--selected {
+    background-color: black;
+    & a {
+      color: white !important;
     }
   }
 }

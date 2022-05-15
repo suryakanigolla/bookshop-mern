@@ -42,10 +42,10 @@
   font-size: var(--fs-300);
 }
 .fs-200 {
-  font-size: var(--fs-200);
+  font-size: var(--fs-200) !important;
 }
 .fs-100 {
-  font-size: var(--fs-100);
+  font-size: var(--fs-100) !important;
 }
 
 .fs-900,

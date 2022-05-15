@@ -1,0 +1,39 @@
+.book {
+  display: grid;
+  place-content: center;
+  grid-template-columns: 200px 165px;
+  gap: 20px;
+  &__image {
+    width: 200px;
+    & > img {
+      aspect-ratio: 1 / 1.5;
+    }
+  }
+  & div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  &__title {
+    max-width: 165px;
+  }
+  &__add {
+    border-radius: 8px;
+    padding: 7px 30px !important;
+    transition: box-shadow 80ms;
+    color: white !important;
+  }
+  &__login {
+    border-radius: 8px;
+    background-color: black !important;
+    padding: 7px 30px !important;
+    color: white !important;
+    display: grid;
+    place-content: center;
+  }
+}

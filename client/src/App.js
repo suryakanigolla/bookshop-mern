@@ -6,8 +6,8 @@ import Navbar from "components/Navbar";
 const App = () => {
   return (
     <div className="App">
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           {routes.map((route, index) => (
             <Route

@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { logout } from "state/actions/userActions";
 
@@ -11,6 +12,8 @@ import "./ProfileDropdown.scss";
 
 const ProfileDropdown = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { refreshToken } = useSelector((state) => state.userReducer);
 
   const handleLogout = () => {
@@ -30,7 +33,7 @@ const ProfileDropdown = () => {
       transition
     >
       <div className="profile-dropdown">
-        <MenuItem>My Orders</MenuItem>
+        <MenuItem onClick={() => navigate("orders")}>My Orders</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </div>
     </Menu>

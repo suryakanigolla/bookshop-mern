@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "state/actions/contentActions";
+import Pagination from "react-js-pagination";
 
 import Skeleton from "react-loading-skeleton";
 import BookOne from "assets/images/book1.jpg";
@@ -9,12 +10,21 @@ import BookThree from "assets/images/book3.jpg";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "./IndexPage.scss";
+import Book from "components/Book";
+
+const perPage = 4;
 
 const IndexPage = () => {
   const catalogRef = useRef(null);
+  const [page, setPage] = useState(3);
 
   const dispatch = useDispatch();
   const { books, isLoading } = useSelector((state) => state.contentReducer);
+
+  const indexOfLastBook = page * perPage;
+  const indexOfFirstBook = indexOfLastBook - perPage;
+
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
   useEffect(() => {
     dispatch(getBooks());
@@ -47,21 +57,46 @@ const IndexPage = () => {
           </button>
         </div>
       </div>
-      <div ref={catalogRef} className="bg-black index-page__browse">
+      <div ref={catalogRef} className="index-page__browse">
         <div className="bg-main container index-page__browse__content">
           <h2 className="index-page__browse__content__heading">Catalog</h2>
           <div className="index-page__browse__content__books">
-            {Array(4)
-              .fill({})
-              .map((_, index) => (
-                <div
-                  key={index}
-                  className="index-page__browse__content__books__book"
-                >
-                  <Skeleton />
-                </div>
-              ))}
+            {isLoading
+              ? Array(4)
+                  .fill({})
+                  .map((_, index) => (
+                    <div
+                      key={index}
+                      className="index-page__browse__content__books__book"
+                    >
+                      <Skeleton />
+                    </div>
+                  ))
+              : currentBooks.map((book, index) => (
+                  <Book
+                    key={index}
+                    title={book.title}
+                    author={book.author}
+                    image={book.image}
+                    price={book.price}
+                    id={book.id}
+                  />
+                ))}
           </div>
+          {isLoading ? null : (
+            <div>
+              <Pagination
+                activePage={page}
+                itemsCountPerPage={perPage}
+                totalItemsCount={books.length}
+                pageRangeDisplayed={Math.ceil(books.length / perPage)}
+                onChange={(pageNumber) => setPage(pageNumber)}
+                hideNavigation={true}
+                hideFirstLastPages={true}
+                activeClass="pagination--selected"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

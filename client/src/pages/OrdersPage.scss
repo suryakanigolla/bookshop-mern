@@ -1,0 +1,20 @@
+.orders-page {
+  min-height: 110vh;
+  padding: 17.5px 21.5px 17.5px 33px;
+  display: flex;
+  align-items: flex-start;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+    &__item {
+      height: 100px;
+      background-color: #414758;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+  }
+}

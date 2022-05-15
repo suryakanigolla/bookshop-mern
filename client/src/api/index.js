@@ -23,6 +23,9 @@ axiosInstance.interceptors.request.use(
 
 // Content Api
 export const getBooks = () => axiosInstance.get("/books");
+export const createOrder = (orderBody) =>
+  axiosInstance.post("/orders", orderBody);
+export const getOrders = () => axiosInstance.get("/orders");
 
 // User Api
 export const register = (registerBody) =>
