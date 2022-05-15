@@ -2,16 +2,17 @@ const express = require("express");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
-const passport = require('passport');
+const passport = require("passport");
 const compression = require("compression");
 const cors = require("cors");
 const httpStatus = require("http-status");
 const config = require("./config/config");
 const morgan = require("./config/morgan");
-const { jwtStrategy } = require('./config/passport');
+const { jwtStrategy } = require("./config/passport");
 const { errorConverter, errorHandler } = require("./middlewares/error");
 const ApiError = require("./utils/ApiError");
 const routes = require("./routes/v1");
+const path = require("path");
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.use(express.json());
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
 // sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
@@ -42,10 +45,14 @@ app.options("*", cors());
 
 // jwt authentication
 app.use(passport.initialize());
-passport.use('jwt', jwtStrategy);
+passport.use("jwt", jwtStrategy);
 
 // v1 api routes
 app.use("/v1", routes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
