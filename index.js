@@ -3,6 +3,10 @@ const app = require("./app");
 const config = require("./config/config");
 const logger = require("./config/logger");
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+
 let server;
 mongoose.connect(config.mongoose.url).then(() => {
   logger.info("Connected to MongoDB");
